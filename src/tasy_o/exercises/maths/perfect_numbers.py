@@ -4,13 +4,15 @@ Proper divisors are the positive integers that divide the number exactly, exclud
 28 is another example and also 496
 Write a function that calculates all the perfect numbers from 1 to n
 """
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from tasy_o.api.validators import validate_number_int
+from typing import Annotated
 
 
 router = APIRouter(prefix="/maths", tags=["Maths"])
 
 @router.get("/perfect_numbers")
-async def find_perfect_numbers(top_limit: int) -> set[int]:
+async def find_perfect_numbers(top_limit: Annotated[int, Depends(validate_number_int)]) ->set[int]:
     perfect_numbers = set()
     for i in range(2, top_limit):
         divisors = set()
