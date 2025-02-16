@@ -11,7 +11,7 @@ router = APIRouter(prefix="/maths", tags=["Maths"])
 
 
 @router.get("/numbers_into_text")
-async def numbers_into_text(input_number: Annotated[str, Depends(validate_number_str)]) -> str:
+async def numbers_into_text(input_number: Annotated[str, Depends(validate_number_str)]) -> dict[str, str]:
     numbers_dict = {"1": "ONE",
                     "2": "TWO",
                     "3": "THREE",
@@ -25,4 +25,4 @@ async def numbers_into_text(input_number: Annotated[str, Depends(validate_number
     result = ''
     for number in input_number:
         result += f"{numbers_dict[number]} "
-    return result.strip()
+    return {'result': result.strip()}

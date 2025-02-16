@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from models.app_config import AppConfig
+from tasy_o.api.models.app_config import AppConfig
 
 
 
