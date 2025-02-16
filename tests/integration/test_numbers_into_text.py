@@ -1,11 +1,12 @@
 from .conftest import client
 
+
 def test_numbers_into_text():
     # Given the endpoint, the query parameters
     # the input, the expected_result and the client
     endpoint = "/maths/maths/numbers_into_text"
-    input_number = '42'
-    query_parameters = f'?input_number={input_number}'
+    input_number = "42"
+    query_parameters = f"?input_number={input_number}"
     expected_result = "FOUR TWO"
     expected_status_response = 200
 
@@ -21,8 +22,8 @@ def test_numbers_into_txt_wrong():
     # Given the endpoint, the query parameters
     # the input, the expected_result and the client
     endpoint = "/maths/maths/numbers_into_text"
-    input_number = 'Fourty two'
-    query_parameters = f'?input_number={input_number}'
+    input_number = "Fourty two"
+    query_parameters = f"?input_number={input_number}"
     expected_result = {"detail": "Invalid input: only string digits"}
     expected_status_response = 400
 

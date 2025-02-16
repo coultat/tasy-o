@@ -7,9 +7,10 @@ import uvicorn
 fastapi_app = create_fastapi_app(app_config=app_config)
 fastapi_app.include_router(maths_router)
 
+
 @fastapi_app.get("/hello_world")
 async def hello_world():
-    return {'result': 'hello_world'}
+    return {"result": "hello_world"}
 
 
 if __name__ == "__main__":
