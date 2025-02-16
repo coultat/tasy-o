@@ -12,7 +12,7 @@ from typing import Annotated
 router = APIRouter(prefix="/maths", tags=["Maths"])
 
 @router.get("/perfect_numbers")
-async def find_perfect_numbers(top_limit: Annotated[int, Depends(validate_number_int)]) ->set[int]:
+async def find_perfect_numbers(top_limit: Annotated[int, Depends(validate_number_int)]) ->dict[str, set[int]]:
     perfect_numbers = set()
     for i in range(2, top_limit):
         divisors = set()
@@ -22,4 +22,4 @@ async def find_perfect_numbers(top_limit: Annotated[int, Depends(validate_number
         if sum(divisors) == i:
             perfect_numbers.add(i)
 
-    return perfect_numbers
+    return {'result': perfect_numbers}
