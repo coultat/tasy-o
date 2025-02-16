@@ -1,6 +1,6 @@
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from constants import DEFAULT_ENV_PATH
+from tasy_o.api.constants import DEFAULT_ENV_PATH
 
 
 class AppConfig(BaseSettings):
@@ -8,6 +8,5 @@ class AppConfig(BaseSettings):
     version: str = Field(validation_alias='FASTAPI_VERSION')
     description: str = Field(validation_alias="FASTAPI_DESCRIPTION")
     model_config = SettingsConfigDict(env_file=DEFAULT_ENV_PATH)
-
 
 app_config = AppConfig()
