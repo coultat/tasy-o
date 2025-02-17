@@ -7,7 +7,7 @@ def test_numbers_into_text():
     endpoint = "/maths/maths/numbers_into_text"
     input_number = "42"
     query_parameters = f"?input_number={input_number}"
-    expected_result = "FOUR TWO"
+    expected_result = {"result": "FOUR TWO"}
     expected_status_response = 200
 
     # When transforming the numbers into text
