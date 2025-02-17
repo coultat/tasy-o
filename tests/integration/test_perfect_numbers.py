@@ -7,7 +7,7 @@ def test_perfect_numbers():
     endpoint = "/maths/maths/perfect_numbers"
     input_number = "42"
     query_parameters = f"?input_number={input_number}"
-    expected_result = [6, 28]  # Should be a set but FastAPI doesn't serialize sets
+    expected_result = [28, 6]  # Should be a set but FastAPI doesn't serialize sets
     expected_status_response = 200
 
     # When calling the endpoint

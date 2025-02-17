@@ -1,4 +1,4 @@
-from tasy_o.exercises.maths.numbers_to_text import numbers_into_text
+from tasy_o.exercises.maths.numbers_to_text import _numbers_into_text
 import pytest
 
 
@@ -9,10 +9,10 @@ async def test_numbers_into_text():
     expected_result = "FOUR TWO"
 
     # When transforming the numbers into text
-    result = await numbers_into_text(input_str)
+    result = await _numbers_into_text(input_str)
 
     # Then the result must match with the expected_result
-    assert result["result"] == expected_result
+    assert result == expected_result
 
 
 @pytest.mark.anyio
@@ -23,4 +23,4 @@ async def test_numbers_wrong_input():
     # When transofrming it into text
     with pytest.raises(KeyError):
         # Then the KeyError Exception is raised
-        _ = await numbers_into_text(wrong_input)
+        _ = await _numbers_into_text(wrong_input)

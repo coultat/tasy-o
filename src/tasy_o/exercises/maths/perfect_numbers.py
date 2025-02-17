@@ -16,14 +16,18 @@ router = APIRouter(prefix="/maths", tags=["Maths"])
 @router.get("/perfect_numbers")
 async def find_perfect_numbers(
     top_limit: Annotated[int, Depends(validate_number_int)],
-) -> dict[str, set[int]]:
-    perfect_numbers = set()
+) -> dict[str, list[int]]:
+    perfect_numbers = await _find_perfect_numbers(top_limit)
+    return {"result": perfect_numbers}
+
+
+async def _find_perfect_numbers(top_limit: int) -> list[int]:
+    perfect_numbers: list[int] = []
     for i in range(2, top_limit):
         divisors = set()
         for j in range(1, i):
             if i % j == 0:
                 divisors.add(j)
         if sum(divisors) == i:
-            perfect_numbers.add(i)
-
-    return {"result": perfect_numbers}
+            perfect_numbers.append(i)
+    return perfect_numbers
