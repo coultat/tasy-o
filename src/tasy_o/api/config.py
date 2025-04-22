@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from tasy_o.api.models.app_config import AppConfig
+from tasy_o.models.app_config import AppConfig
 
 
 def create_fastapi_app(app_config: AppConfig) -> FastAPI:

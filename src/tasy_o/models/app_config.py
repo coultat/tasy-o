@@ -9,6 +9,10 @@ class AppConfig(BaseSettings):
     description: str = Field(
         default="fastapi_description", validation_alias="FASTAPI_DESCRIPTION"
     )
+    docs_url: str = Field(
+        default="/docs",
+        validation_alias="FASTAPI_DOC_URL",
+    )
     model_config = SettingsConfigDict(env_file=DEFAULT_ENV_PATH)
 
 
