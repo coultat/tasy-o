@@ -5,6 +5,8 @@ Write a function that converts numbers into text.
 
 from fastapi import APIRouter, Depends
 from typing import Annotated
+
+from tasy_o.models.maths import NumberToText, ResponseMaths
 from tasy_o.api.validators import validate_number_str
 
 router = APIRouter(prefix="/maths", tags=["Maths"])
@@ -13,15 +15,12 @@ router = APIRouter(prefix="/maths", tags=["Maths"])
 @router.get("/numbers_into_text")
 async def numbers_into_text(
     input_number: Annotated[str, Depends(validate_number_str)],
-) -> dict[str, str]:
-    try:
-        result = await _numbers_into_text(input_number)
-        return {"result": result.strip()}
-    except KeyError:
-        return {"error": "String is not digit"}
+) -> ResponseMaths | dict[str, str]:
+    result = await _numbers_into_text(input_number)
+    return ResponseMaths(result=result)
 
 
-async def _numbers_into_text(input_number: str) -> str:
+async def _numbers_into_text(input_number: str) -> NumberToText:
     numbers_dict = {
         "1": "ONE",
         "2": "TWO",
@@ -37,4 +36,5 @@ async def _numbers_into_text(input_number: str) -> str:
     result = ""
     for number in input_number:
         result += f"{numbers_dict[number]} "
-    return result.strip()
+    result = result.strip()
+    return NumberToText(written_number=result)
